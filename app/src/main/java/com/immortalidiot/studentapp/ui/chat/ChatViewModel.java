@@ -1,16 +1,16 @@
-package com.immortalidiot.studentapp.ui.notifications;
+package com.immortalidiot.studentapp.ui.chat;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
-
+public class ChatViewModel extends ViewModel {
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public ChatViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        String NOTHING_TEXT = "Здесь пока нихуя нет :D";
+        mText.setValue(NOTHING_TEXT);
     }
 
     public LiveData<String> getText() {
