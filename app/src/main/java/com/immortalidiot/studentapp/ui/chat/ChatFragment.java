@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.immortalidiot.studentapp.databinding.FragmentChatBinding;
 
 public class ChatFragment extends Fragment {
-    private FragmentChatBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savesInstanceState) {
@@ -21,7 +20,8 @@ public class ChatFragment extends Fragment {
         ChatViewModel chatViewModel =
                 new ViewModelProvider(this).get(ChatViewModel.class);
 
-        binding = FragmentChatBinding.inflate(inflater, container, false);
+        com.immortalidiot.studentapp.databinding.FragmentChatBinding binding =
+                FragmentChatBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textChat;

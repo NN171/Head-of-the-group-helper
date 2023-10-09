@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.immortalidiot.studentapp.databinding.FragmentSettingsBinding;
 
 public class SettingsFragment extends Fragment {
-    private FragmentSettingsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savesInstanceState) {
@@ -21,7 +20,8 @@ public class SettingsFragment extends Fragment {
         SettingsViewModel settingsViewModel =
                 new ViewModelProvider(this).get(SettingsViewModel.class);
 
-        binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        com.immortalidiot.studentapp.databinding.FragmentSettingsBinding binding =
+                FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textSettings;

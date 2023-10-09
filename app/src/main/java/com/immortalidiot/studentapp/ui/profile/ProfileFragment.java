@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.immortalidiot.studentapp.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-    private FragmentProfileBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savesInstanceState) {
@@ -21,7 +20,8 @@ public class ProfileFragment extends Fragment {
         ProfileViewModel profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
 
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        com.immortalidiot.studentapp.databinding.FragmentProfileBinding binding =
+                FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textProfile;
