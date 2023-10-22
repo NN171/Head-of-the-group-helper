@@ -7,4 +7,14 @@
     <string name="title_chat">Чат</string>
 
     <string name="emptiness">Здесь пока нихуя нет :D</string>
+
+    <string name="login">Войти</string>
+    <string name="password">Пароль</string>
+    <string name="email">Почта</string>
+
+    <string name="register">Регистрация</string>
+    <string name="registration">Зарегистрироваться</string>
+    <string name="password_confirmation">Подтвердите пароль</string>
+    <string name="to_login"><u>Перейти в окно авторизации</u></string>
+    <string name="to_registration"><u>Нет аккаунта?\nЖми для регистрации</u></string>
 </resources>
