@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "745643260899",
+    "project_id": "studentapp-4f8c1",
+    "storage_bucket": "studentapp-4f8c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745643260899:android:01c4437d0690809a6dbed6",
+        "android_client_info": {
+          "package_name": "com.immortalidiot.studentapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyPdm3JAuH6SDzZKo3kXMEPNIQAzkALN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
