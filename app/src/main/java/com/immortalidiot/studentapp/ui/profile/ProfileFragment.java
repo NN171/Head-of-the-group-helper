@@ -10,22 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.immortalidiot.studentapp.R;
 import com.immortalidiot.studentapp.databinding.FragmentProfileBinding;
 
-public class ProfileFragment extends Fragment {
+import java.util.zip.Inflater;
 
+public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savesInstanceState) {
-
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
-
-        com.immortalidiot.studentapp.databinding.FragmentProfileBinding binding =
-                FragmentProfileBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textProfile;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }
