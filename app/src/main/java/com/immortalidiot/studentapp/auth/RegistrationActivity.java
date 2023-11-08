@@ -40,24 +40,28 @@ public class RegistrationActivity extends AppCompatActivity {
                     (editTextPasswordConfirmation.getText());
 
             if (TextUtils.isEmpty(email)) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(RegistrationActivity.this,
                         "Введите почту", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (TextUtils.isEmpty(password)) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(RegistrationActivity.this,
                         "Введите пароль", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (TextUtils.isEmpty(passwordConfirmation)) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(RegistrationActivity.this,
                         "Подтвердите пароль", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!password.equals(passwordConfirmation)) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(RegistrationActivity.this,
                         "Пароли не совпадают", Toast.LENGTH_SHORT).show();
                 return;
