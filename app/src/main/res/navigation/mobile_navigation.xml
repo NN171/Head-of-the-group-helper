@@ -16,17 +16,8 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/navigation_notes"
-        android:name="com.immortalidiot.studentapp.ui.notes.NotesFragment"
-        tools:layout="@layout/fragment_notes" />
-
-    <fragment
         android:id="@+id/navigation_profile"
         android:name="com.immortalidiot.studentapp.ui.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.immortalidiot.studentapp.ui.profile.ProfileFragment"
-        tools:layout="@layout/fragment_chat" />
 </navigation>
