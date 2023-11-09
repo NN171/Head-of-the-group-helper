@@ -58,10 +58,15 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
 
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this,
-                            "Успешный вход", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    if (auth.getCurrentUser().isEmailVerified()){
+                        Toast.makeText(LoginActivity.this,
+                                "Успешный вход", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this,
+                                "Неверный логин, или пароль или почта не подтверждена", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(LoginActivity.this,
                             "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
