@@ -2,12 +2,9 @@ package com.immortalidiot.studentapp;
 
 import android.os.Bundle;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.immortalidiot.studentapp.databinding.ActivityMainBinding;
@@ -24,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavController navController = Navigation.findNavController(this,
                 R.id.nav_host_fragment_activity_main);
+        navController.navigate(R.id.navigation_profile);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
