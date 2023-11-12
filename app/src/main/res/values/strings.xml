@@ -9,8 +9,8 @@
     <string name="emptiness">Здесь пока нихуя нет :D</string>
 
     <string name="login">Войти</string>
-    <string name="password">Пароль</string>
-    <string name="email">Почта</string>
+    <string name="password">Введите пароль</string>
+    <string name="email">Email</string>
 
     <string name="register">Регистрация</string>
     <string name="registration">Зарегистрироваться</string>
