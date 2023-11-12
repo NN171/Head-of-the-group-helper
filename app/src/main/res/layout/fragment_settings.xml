@@ -12,6 +12,7 @@
         android:layout_height="0dp"
         android:visibility="visible"
         app:constraint_referenced_ids="rectangleProfile, userAvatar, userName, userGroup, infoProfile" />
+
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="match_parent"
@@ -88,5 +89,58 @@
         app:layout_constraintTop_toTopOf="@id/rectangleProfile"
         android:contentDescription="@string/go_to_profile" />
 
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:constraint_referenced_ids="rectangleTheme, themeAuto, themeLight, themeDark" />
+
+    <ImageView
+        android:id="@+id/rectangleTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/rectangleProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/rectangle_theme"
+        />
+
+    <ImageButton
+        android:id="@+id/themeAuto"
+        android:layout_width="109dp"
+        android:layout_height="48dp"
+        android:src="@drawable/theme_defoult_auto_icon"
+        android:backgroundTint="#00ffffff"
+        app:layout_constraintStart_toStartOf="@id/rectangleTheme"
+        app:layout_constraintTop_toTopOf="@id/rectangleTheme"
+        app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
+        app:layout_constraintEnd_toStartOf="@id/themeLight"
+        android:contentDescription="themeAuto" />
+
+    <ImageButton
+        android:id="@+id/themeLight"
+        android:layout_width="109dp"
+        android:layout_height="48dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#00ffffff"
+        android:src="@drawable/theme_active_sun_icon"
+        app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
+        app:layout_constraintEnd_toStartOf="@id/themeDark"
+        app:layout_constraintStart_toEndOf="@id/themeAuto"
+        app:layout_constraintTop_toTopOf="@id/rectangleTheme"
+        android:contentDescription="themeLight" />
+
+    <ImageButton
+        android:id="@+id/themeDark"
+        android:layout_width="109dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toEndOf="@id/themeLight"
+        app:layout_constraintTop_toTopOf="@id/rectangleTheme"
+        app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
+        app:layout_constraintEnd_toEndOf="@id/rectangleTheme"
+        android:backgroundTint="#00ffffff"
+        android:src="@drawable/theme_defoult_moon_icon"
+        android:contentDescription="themeDark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
