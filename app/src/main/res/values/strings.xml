@@ -20,7 +20,8 @@
 
     <string name="user_name">Иванов Александр\nДмитриевич</string>
     <string name="user_group">Студент группы УВП-212</string>
-    <string name="go_to_profile">profile</string>
     <string name="settings_account_block_title">Управление аккаунтом</string>
+    <string name="support_block_title">Помощь и обратная связь</string>
+    <string name="todo">TODO</string>
 
 </resources>
