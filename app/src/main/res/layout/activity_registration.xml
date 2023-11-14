@@ -38,6 +38,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/reg_email"
             android:hint="@string/email"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             tools:ignore="VisualLintTextFieldSize" />
@@ -54,6 +55,7 @@
             android:hint="@string/password"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:gravity="center"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,6 +72,7 @@
             android:hint="@string/password_confirmation"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:gravity="center"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
