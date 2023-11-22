@@ -11,10 +11,15 @@
     <string name="login">Войти</string>
     <string name="password">Пароль</string>
     <string name="email">Почта</string>
+    <string name="reset_password"><u>Забыли пароль?\nЖми для восстановления</u></string>
 
     <string name="register">Регистрация</string>
     <string name="registration">Зарегистрироваться</string>
     <string name="password_confirmation">Подтвердите пароль</string>
     <string name="to_login"><u>Перейти в окно авторизации</u></string>
     <string name="to_registration"><u>Нет аккаунта?\nЖми для регистрации</u></string>
+
+    <string name="reset">Сброс</string>
+    <string name="cancel">Отмена</string>
+    <string name="reset_password_title">Сброс пароля</string>
 </resources>
