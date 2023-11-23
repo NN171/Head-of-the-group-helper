@@ -41,6 +41,8 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:imeOptions="flagNavigateNext"
+            android:singleLine="true"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,6 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center"
+            android:singleLine="true"
+            android:imeOptions="flagNavigateNext"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 

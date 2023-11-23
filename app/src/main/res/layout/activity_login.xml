@@ -46,6 +46,8 @@
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:singleLine="true"                                                     
+            android:imeOptions="flagNavigateNext"
             android:hint="@string/email"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,6 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:hint="@string/password"
+            android:singleLine="true"
+            android:imeOptions="actionDone"                                                    
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
