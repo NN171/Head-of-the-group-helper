@@ -10,7 +10,8 @@
 
     <string name="login">Войти</string>
     <string name="password">Пароль</string>
-    <string name="email">Почта</string>
+    <string name="email">Email</string>
+    <string name="reset_password"><u>Забыли пароль?\nЖми для восстановления</u></string>
 
     <string name="register">Регистрация</string>
     <string name="registration">Зарегистрироваться</string>
@@ -24,4 +25,8 @@
     <string name="support_block_title">Помощь и обратная связь</string>
     <string name="todo">TODO</string>
 
+
+    <string name="reset">Сброс</string>
+    <string name="cancel">Отмена</string>
+    <string name="reset_password_title">Сброс пароля</string>
 </resources>
