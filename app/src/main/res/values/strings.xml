@@ -17,4 +17,11 @@
     <string name="password_confirmation">Подтвердите пароль</string>
     <string name="to_login"><u>Перейти в окно авторизации</u></string>
     <string name="to_registration"><u>Нет аккаунта?\nЖми для регистрации</u></string>
+
+    <string name="user_name">Иванов Александр\nДмитриевич</string>
+    <string name="user_group">Студент группы УВП-212</string>
+    <string name="settings_account_block_title">Управление аккаунтом</string>
+    <string name="support_block_title">Помощь и обратная связь</string>
+    <string name="todo">TODO</string>
+
 </resources>
