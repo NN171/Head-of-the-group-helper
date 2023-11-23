@@ -10,7 +10,7 @@
 
     <string name="login">Войти</string>
     <string name="password">Пароль</string>
-    <string name="email">Почта</string>
+    <string name="email">Email</string>
     <string name="reset_password"><u>Забыли пароль?\nЖми для восстановления</u></string>
 
     <string name="register">Регистрация</string>
