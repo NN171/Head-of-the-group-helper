@@ -9,7 +9,7 @@ public class SettingsViewModel extends ViewModel {
 
     public SettingsViewModel() {
         mText = new MutableLiveData<>();
-        String NOTHING_TEXT = "Здесь пока нихуя нет :D";
+        String NOTHING_TEXT = "Здесь пока ничего нет :D";
         mText.setValue(NOTHING_TEXT);
     }
 
