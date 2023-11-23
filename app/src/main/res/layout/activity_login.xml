@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:gravity="center"
-            android:hint="@string/email"
             android:imeOptions="flagNavigateNext"
+            android:hint="@string/email"
             android:singleLine="true"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
