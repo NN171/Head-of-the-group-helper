@@ -8,7 +8,8 @@
 
     <string name="emptiness">Здесь пока ничего нет :D</string>
 
-    <string name="login">Войти</string>
+    <string name="log">Войти</string>
+    <string name="login">Авторизация</string>
     <string name="password">Пароль</string>
     <string name="email">Email</string>
     <string name="reset_password"><u>Забыли пароль?\nЖми для восстановления</u></string>
