@@ -6,78 +6,96 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="50dp"
+    android:padding="16dp"
     tools:context=".auth.RegistrationActivity">
 
     <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:flow_wrapMode="aligned"
-        app:flow_verticalGap="15dp"
+        android:layout_height="445dp"
+        android:background="@drawable/blue_rounded_background"
         app:constraint_referenced_ids="login_textview, reg_email_field, reg_password_field, password_confirmation_field, reg_button, to_login"
-        />
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.9" />
+
     <TextView
         android:id="@+id/login_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="239dp"
+        android:layout_height="35dp"
         android:gravity="center"
+        android:text="@string/register"
+        android:textColor="@color/white"
         android:textSize="24sp"
-        android:textColor="@color/black"
-        android:text="@string/register" />
+        tools:layout_editor_absoluteX="123dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_email_field"
         app:layout_constraintTop_toBottomOf="@id/login_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="0dp"
+        android:background="@drawable/white_rounded_background"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/reg_email"
             android:hint="@string/email"
-            android:gravity="center"
+            android:background="@drawable/white_rounded_background"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:imeOptions="flagNavigateNext"
             android:singleLine="true"
-            tools:ignore="VisualLintTextFieldSize" />
+            tools:ignore="VisualLintTextFieldSize"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/reg_password_field"
         app:layout_constraintTop_toBottomOf="@id/reg_email_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_rounded_background"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/reg_password"
             android:hint="@string/password"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:gravity="center"
+            android:background="@drawable/white_rounded_background"
             android:singleLine="true"
             android:imeOptions="flagNavigateNext"
-            tools:ignore="VisualLintTextFieldSize" />
+            tools:ignore="VisualLintTextFieldSize"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_confirmation_field"
         app:layout_constraintTop_toBottomOf="@id/reg_password_field"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="60dp">
+        android:background="@drawable/white_rounded_background"
+        tools:layout_editor_absoluteY="60dp"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_confirmation"
             android:hint="@string/password_confirmation"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:gravity="center"
             android:imeOptions="actionDone"
+            android:background="@drawable/white_rounded_background"
             android:singleLine="true"
             tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -94,17 +112,21 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/reg_button"
-        app:layout_constraintTop_toBottomOf="@id/password_confirmation_field"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="300dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="66dp"
+        android:background="@drawable/white_rounded_background"
         android:text="@string/registration"
         android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textColor="@color/main_blue"
+        android:textSize="16sp"
         android:textStyle="normal"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        app:layout_constraintBottom_toBottomOf="@id/to_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_confirmation_field"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.55" />
 
     <TextView
         android:id="@+id/to_login"
@@ -115,7 +137,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:text="@string/to_login"
-        android:textColor="@color/blue"
-        android:textStyle="italic"
+        android:textColor="@color/white"
         android:textSize="14sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
