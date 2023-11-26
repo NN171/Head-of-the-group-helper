@@ -8,12 +8,6 @@
     android:padding="15dp"
     tools:context=".ui.settings.SettingsFragment">
 
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:constraint_referenced_ids="rectangleProfile, userAvatar, userName, userGroup, infoProfile" />
-
     <TextView
         android:id="@+id/textSettings"
         android:layout_width="match_parent"
@@ -25,17 +19,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:constraint_referenced_ids="rectangleProfile, userAvatar, userName, userGroup, infoProfile" />
+
+    <View
         android:id="@+id/rectangleProfile"
-        android:adjustViewBounds="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/rectangle_profile"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textSettings"
-        android:contentDescription="@string/todo" />
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_rectangle_grey"
+        app:constraint_referenced_ids="userAvatar, userGroup, userName, infoProfile"
+        />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userAvatar"
@@ -90,22 +91,21 @@
         app:layout_constraintTop_toTopOf="@id/rectangleProfile"
         android:contentDescription="@string/todo" />
 
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:constraint_referenced_ids="rectangleTheme, themeAuto, themeLight, themeDark" />
-
-    <ImageView
+    <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/rectangleTheme"
-        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/rectangleProfile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/rectangle_theme"
-        android:contentDescription="@string/todo" />
+        app:flow_horizontalStyle="spread"
+        android:padding="15dp"
+        app:flow_wrapMode="chain"
+        android:background="@drawable/rounded_rectangle_blue"
+        app:constraint_referenced_ids="themeAuto, themeLight, themeDark"
+        />
 
     <ImageButton
         android:id="@+id/themeAuto"
@@ -144,17 +144,20 @@
         android:backgroundTint="#00ffffff"
         android:contentDescription="@string/todo" />
 
-
-    <ImageView
+    <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/rectangleSettings"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/rectangle_settings_account"
-        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/rectangleTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/todo" />
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_rectangle_grey"
+        app:flow_wrapMode="aligned"
+        app:flow_verticalGap="5dp"
+        app:constraint_referenced_ids="settingAccountBlockTitle, safety, deleteAccount"
+        />
 
     <TextView
         android:id="@+id/settingAccountBlockTitle"
@@ -170,7 +173,7 @@
         app:layout_constraintTop_toTopOf="@id/rectangleSettings" />
 
     <ImageButton
-        android:id="@+id/deleteAccount"
+        android:id="@+id/safety"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -182,23 +185,31 @@
         android:contentDescription="@string/todo" />
 
     <ImageButton
+        android:id="@+id/deleteAccount"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:backgroundTint="#00ffffff"
         android:src="@drawable/delete_account_button"
         app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
         app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toBottomOf="@id/deleteAccount"
+        app:layout_constraintTop_toBottomOf="@id/safety"
         android:contentDescription="@string/todo" />
 
-    <ImageView
+    <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/rectangleSuport"
-        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/rectangle_support"
         app:layout_constraintTop_toBottomOf="@id/rectangleSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:contentDescription="@string/todo" />
+        android:padding="10dp"
+        app:flow_wrapMode="aligned"
+        app:flow_verticalGap="5dp"
+        android:background="@drawable/rounded_rectangle_grey"
+        app:constraint_referenced_ids="supportBlockTitle, askQuestion, contactSupport, review"
+        />
 
     <TextView
         android:id="@+id/supportBlockTitle"
