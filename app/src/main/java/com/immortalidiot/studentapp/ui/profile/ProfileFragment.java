@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.immortalidiot.studentapp.auth.CallbackFragment;
+import com.immortalidiot.studentapp.auth.FragmentUtils;
 import com.immortalidiot.studentapp.databinding.FragmentProfileBinding;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends FragmentUtils {
+    CallbackFragment fragment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savesInstanceState) {
