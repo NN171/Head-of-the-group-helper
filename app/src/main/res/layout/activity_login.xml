@@ -9,6 +9,13 @@
     android:padding="16dp"
     tools:context=".auth.LoginActivity">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="flow, password_reset"/>
+
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow"
         android:layout_width="309dp"
@@ -142,6 +149,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
