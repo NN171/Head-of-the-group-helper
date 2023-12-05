@@ -40,7 +40,7 @@ public class LoginFragment extends FragmentUtils {
         ProgressBar progressBar = binding.progressBar;
         binding.toRegistration.setOnClickListener(v -> {
             if (fragment != null) {
-                fragment.changeFragment(new SignUpFragment(), true);
+                fragment.changeFragment(new RegistrationFragment(), true);
             }
         });
 
