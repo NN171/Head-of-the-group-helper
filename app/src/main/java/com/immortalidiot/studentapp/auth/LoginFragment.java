@@ -24,7 +24,7 @@ import java.util.Objects;
 
 
 public class LoginFragment extends FragmentUtils {
-    FirebaseAuth auth;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
     CallbackFragment fragment;
     FragmentLoginBinding binding;
     ForgotDialogBinding forgotDialogBinding;
