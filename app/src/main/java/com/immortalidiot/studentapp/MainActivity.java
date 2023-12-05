@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity implements CallbackFragment 
         setContentView(binding.getRoot());
         replaceFragment(new LoginFragment(), false);
 
-        ViewGroup.LayoutParams layoutParams = binding.container.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams = binding.navView.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        binding.container.setLayoutParams(layoutParams);
-        binding.navView.setVisibility(View.GONE);
+        binding.navView.setLayoutParams(layoutParams);
+        binding.bottomNavView.setVisibility(View.GONE);
         binding.bottomNavView.setOnItemSelectedListener(v -> {
             if (v.getItemId() == R.id.navigation_profile) {
                 replaceFragment(new ProfileFragment(), true);
