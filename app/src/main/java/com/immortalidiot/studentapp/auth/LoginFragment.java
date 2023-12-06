@@ -1,20 +1,25 @@
 package com.immortalidiot.studentapp.auth;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.immortalidiot.studentapp.databinding.ForgotDialogBinding;
 import com.immortalidiot.studentapp.databinding.FragmentLoginBinding;
 import com.immortalidiot.studentapp.ui.profile.ProfileFragment;
@@ -28,6 +33,27 @@ public class LoginFragment extends FragmentUtils {
     CallbackFragment fragment;
     FragmentLoginBinding binding;
     ForgotDialogBinding forgotDialogBinding;
+    private SharedPreferences sharedPreferences;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean rememberMe = preferences.getBoolean("remember_me", false);
+
+        if (rememberMe) {
+            String email = preferences.getString("email", "");
+            String password = preferences.getString("password", "");
+            binding.loginEmail.setText(email);
+            binding.loginPassword.setText(password);
+            FirebaseUser user = auth.getCurrentUser();
+            if ((user != null) && user.isEmailVerified()) {
+                if (fragment != null) {
+                    fragment.changeFragment(new ProfileFragment(), false);
+                }
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -36,6 +62,12 @@ public class LoginFragment extends FragmentUtils {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
 
         View view = binding.getRoot();
+        AppCompatCheckBox checkBox = binding.rememberMeCheckBox;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> sharedPreferences
+                .edit()
+                .putBoolean("remember_me", isChecked).apply());
+
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
         ProgressBar progressBar = binding.progressBar;
         binding.toRegistration.setOnClickListener(v -> {
@@ -72,6 +104,11 @@ public class LoginFragment extends FragmentUtils {
 
                 if (task.isSuccessful()) {
                     if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
+                        sharedPreferences.edit()
+                                        .putString("email", email)
+                                        .putString("password", password)
+                                        .apply();
+
                         Toast.makeText(getContext(),
                                 "Успешный вход",
                                 Toast.LENGTH_SHORT
