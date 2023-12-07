@@ -72,32 +72,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 return;
             }
 
-            ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
-            StudentRequests login = new StudentRequests(email, password);
-            login.setEmail(email);
-            login.setPassword(password);
-            Call<StudentRequests> requestsCall = serviceAPI.createStudent(login);
-
-            requestsCall.enqueue(new Callback<StudentRequests>() {
-                @Override
-                public void onResponse(@NonNull Call<StudentRequests> call,
-                                       @NonNull Response<StudentRequests> response) {
-                    Toast.makeText(RegistrationActivity.this,
-                            "Аккаунт создан.",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                    // TODO: add switching to Profile
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<StudentRequests> call,
-                                      @NonNull Throwable t) {
-                    Toast.makeText(RegistrationActivity.this,
-                            "Ошибка сети",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
+            registerUser(email, password);
 
 //            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
 //                progressBar.setVisibility(View.GONE);
@@ -143,6 +118,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 Toast.makeText(RegistrationActivity.this,
                         "Аккаунт создан",
                         Toast.LENGTH_SHORT).show();
+                // TODO: add switching to Profile
             }
 
             @Override
