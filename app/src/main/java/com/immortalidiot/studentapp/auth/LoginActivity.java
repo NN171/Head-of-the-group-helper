@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -18,8 +19,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.immortalidiot.studentapp.MainActivity;
 import com.immortalidiot.studentapp.R;
+import com.immortalidiot.studentapp.db.ClientAPI;
+import com.immortalidiot.studentapp.db.ServiceAPI;
+import com.immortalidiot.studentapp.requests.StudentRequests;
+import com.immortalidiot.studentapp.requests.StudentResponse;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -103,24 +112,64 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                progressBar.setVisibility(View.GONE);
+            loginStudent(email, password);
 
-                if (task.isSuccessful()) {
-                    if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
-                        Toast.makeText(LoginActivity.this,
-                                "Успешный вход", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(this, MainActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this,
-                                "Неверный логин, или пароль или почта не подтверждена", Toast.LENGTH_SHORT).show();
-                    }
+//            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+//                progressBar.setVisibility(View.GONE);
+//
+//                if (task.isSuccessful()) {
+//                    if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
+//                        Toast.makeText(LoginActivity.this,
+//                                "Успешный вход", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(this, MainActivity.class));
+//                        finish();
+//                    } else {
+//                        Toast.makeText(LoginActivity.this,
+//                                "Неверный логин, или пароль или почта не подтверждена", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(LoginActivity.this,
+//                            "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+        });
+    }
+    private void loginStudent(String email, String password) {
+        ServiceAPI serviceAPI = ClientAPI.getServiceApi();
+        StudentRequests requests = new StudentRequests(email, password);
+        Call<StudentResponse> responseCall = serviceAPI.getStudent(requests);
+
+        responseCall.enqueue(new Callback<StudentResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<StudentResponse> call,
+                                   @NonNull Response<StudentResponse> response) {
+                if (response.isSuccessful()) {
+                    StudentResponse studentResponse = response.body();
+                    String token = studentResponse.getToken();
+                    AuthManager.saveToken(LoginActivity.this, token);
+                    Toast.makeText(LoginActivity.this,
+                            "Успешный вход",
+                            Toast.LENGTH_SHORT
+                    ).show();
+
+                    // TODO: add switching to Profile
+
                 } else {
                     Toast.makeText(LoginActivity.this,
-                            "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                            "Неверный логин или пароль",
+                            Toast.LENGTH_SHORT
+                    ).show();
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<StudentResponse> call,
+                                  @NonNull Throwable t) {
+                Toast.makeText(LoginActivity.this,
+                        "Что-то пошло не так :(",
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
         });
     }
 }
