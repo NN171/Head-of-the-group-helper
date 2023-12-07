@@ -47,48 +47,48 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
 
-        resetPassword.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-            View dialogView = getLayoutInflater().inflate(R.layout.forgot_dialog, null);
-            TextInputEditText email = dialogView.findViewById(R.id.email_text_field);
-            builder.setView(dialogView);
-            AlertDialog dialog = builder.create();
-
-            dialogView.findViewById(R.id.reset_button)
-                    .setOnClickListener(t -> {
-                        String user_email = email.toString();
-                        if (TextUtils.isEmpty(user_email) && !Patterns.EMAIL_ADDRESS.
-                                matcher(user_email).matches()) {
-                            Toast.makeText(LoginActivity.this,
-                                            "Введите почту",
-                                            Toast.LENGTH_LONG)
-                                    .show();
-                            return;
-                        }
-                        auth.sendPasswordResetEmail(user_email)
-                                .addOnCompleteListener(task -> {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(LoginActivity.this,
-                                                        "На вашу почту отправлено письмо",
-                                                        Toast.LENGTH_LONG)
-                                                .show();
-                                        dialog.dismiss();
-                                    } else {
-                                        Toast.makeText(LoginActivity.this,
-                                                        "Что-то пошло не так :(",
-                                                        Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-                                });
-                    });
-
-            dialogView.findViewById(R.id.cancel_button)
-                    .setOnClickListener(t -> dialog.dismiss());
-            if (dialog.getWindow() != null) {
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-            }
-            dialog.show();
-        });
+//        resetPassword.setOnClickListener(v -> {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+//            View dialogView = getLayoutInflater().inflate(R.layout.forgot_dialog, null);
+//            TextInputEditText email = dialogView.findViewById(R.id.email_text_field);
+//            builder.setView(dialogView);
+//            AlertDialog dialog = builder.create();
+//
+//            dialogView.findViewById(R.id.reset_button)
+//                    .setOnClickListener(t -> {
+//                        String user_email = email.toString();
+//                        if (TextUtils.isEmpty(user_email) && !Patterns.EMAIL_ADDRESS.
+//                                matcher(user_email).matches()) {
+//                            Toast.makeText(LoginActivity.this,
+//                                            "Введите почту",
+//                                            Toast.LENGTH_LONG)
+//                                    .show();
+//                            return;
+//                        }
+//                        auth.sendPasswordResetEmail(user_email)
+//                                .addOnCompleteListener(task -> {
+//                                    if (task.isSuccessful()) {
+//                                        Toast.makeText(LoginActivity.this,
+//                                                        "На вашу почту отправлено письмо",
+//                                                        Toast.LENGTH_LONG)
+//                                                .show();
+//                                        dialog.dismiss();
+//                                    } else {
+//                                        Toast.makeText(LoginActivity.this,
+//                                                        "Что-то пошло не так :(",
+//                                                        Toast.LENGTH_SHORT)
+//                                                .show();
+//                                    }
+//                                });
+//                    });
+//
+//            dialogView.findViewById(R.id.cancel_button)
+//                    .setOnClickListener(t -> dialog.dismiss());
+//            if (dialog.getWindow() != null) {
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+//            }
+//            dialog.show();
+//        });
 
         loginButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
