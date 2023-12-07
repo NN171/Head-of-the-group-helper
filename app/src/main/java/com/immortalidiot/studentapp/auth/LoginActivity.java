@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         final TextInputEditText editTextPassword = findViewById(R.id.login_password);
         final AppCompatButton loginButton = findViewById(R.id.login_button);
         final FirebaseAuth auth = FirebaseAuth.getInstance();
-        final ProgressBar progressBar = findViewById(R.id.progress_bar);
         final TextView toRegistration = findViewById(R.id.to_registration);
         final TextView resetPassword = findViewById(R.id.password_reset);
 
@@ -85,26 +84,22 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginButton.setOnClickListener(v -> {
-            progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(editTextEmail.getText());
             String password = String.valueOf(editTextPassword.getText());
 
             if (TextUtils.isEmpty(email)) {
-                progressBar.setVisibility(View.GONE);
                 Toast.makeText(LoginActivity.this,
                         "Введите почту", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (TextUtils.isEmpty(password)) {
-                progressBar.setVisibility(View.GONE);
                 Toast.makeText(LoginActivity.this,
                         "Введите пароль", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                progressBar.setVisibility(View.GONE);
 
                 if (task.isSuccessful()) {
                     if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {

@@ -2,34 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:orientation="vertical"
     android:id="@+id/dialog_forgot"
-    android:padding="5dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dialog_box"
         android:layout_width="0dp"
-        android:layout_height="317dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/blue_rounded_background"
-        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.9">
-
 
         <TextView
             android:id="@+id/forgotTitle"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="center"
             android:text="@string/reset_password_title"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -42,21 +34,18 @@
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
             android:layout_height="63dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/white_rounded_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/forgotTitle"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.9">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_text_field"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/white_rounded_background"
                 android:hint="@string/email"
                 android:singleLine="true"
@@ -65,37 +54,37 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/reset_button"
-            android:layout_width="110dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/white_rounded_background"
-            android:gravity="center"
             android:text="@string/reset"
             android:textAllCaps="false"
             android:textColor="@color/main_blue"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.4"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cancel_button"
-            android:layout_width="110dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginVertical="16dp"
             android:background="@drawable/white_rounded_background"
             android:gravity="center"
             android:text="@string/cancel"
             android:textAllCaps="false"
             android:textColor="@color/main_blue"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/reset_button"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-            tools:ignore="TextSizeCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/reset_button"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.4"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
