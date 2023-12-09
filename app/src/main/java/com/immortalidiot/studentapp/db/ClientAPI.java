@@ -3,7 +3,7 @@ package com.immortalidiot.studentapp.db;
 import okhttp3.OkHttpClient;import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class ClientAPI {
-    private static final String url = "http://localhost:8080/api/v1/student";
+    private static final String url = "http://localhost:8080";
     private static Retrofit retrofit = null;
     public static Retrofit getClient(){
         if (retrofit == null) {
@@ -12,11 +12,12 @@ public class ClientAPI {
                     .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient.build())
-                    .build();        }
+                    .build();
+        }
         return retrofit;
     }
 
     public static ServiceAPI getServiceApi(){
-        return retrofit.create(ServiceAPI.class);
+        return getClient().create(ServiceAPI.class);
     }
 }

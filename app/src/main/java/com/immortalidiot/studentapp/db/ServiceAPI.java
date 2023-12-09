@@ -1,5 +1,6 @@
 package com.immortalidiot.studentapp.db;
 
+import com.immortalidiot.studentapp.requests.LoginRequest;
 import com.immortalidiot.studentapp.requests.StudentRequests;
 import com.immortalidiot.studentapp.requests.StudentResponse;
 
@@ -10,9 +11,9 @@ import retrofit2.http.POST;
 
 public interface ServiceAPI {
 
-    @POST("/register")
-    Call<StudentRequests> createStudent(@Body StudentRequests student);
+    @POST("/api/v1/student/register")
+    Call<StudentRequests> createStudent(@Body StudentRequests register);
 
-    @GET("/auth")
-    Call<StudentResponse> getStudent(@Body StudentRequests student);
+    @POST("api/v1/student/authenticate")
+    Call<StudentResponse> getStudent(@Body LoginRequest login);
 }

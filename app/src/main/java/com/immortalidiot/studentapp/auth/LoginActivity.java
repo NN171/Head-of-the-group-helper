@@ -1,5 +1,6 @@
 package com.immortalidiot.studentapp.auth;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,14 +18,16 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.immortalidiot.studentapp.MainActivity;
 import com.immortalidiot.studentapp.R;
 import com.immortalidiot.studentapp.db.ClientAPI;
 import com.immortalidiot.studentapp.db.ServiceAPI;
-import com.immortalidiot.studentapp.requests.StudentRequests;
+import com.immortalidiot.studentapp.requests.LoginRequest;
 import com.immortalidiot.studentapp.requests.StudentResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.HttpException;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
@@ -131,9 +134,15 @@ public class LoginActivity extends AppCompatActivity {
 //            });
         });
     }
+
+    private void switchToActivity(){
+        Context context = getApplicationContext();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        context.startActivity(intent);
+    }
     private void loginStudent(String email, String password) {
         ServiceAPI serviceAPI = ClientAPI.getServiceApi();
-        StudentRequests requests = new StudentRequests(email, password);
+        LoginRequest requests = new LoginRequest(email, password);
         Call<StudentResponse> responseCall = serviceAPI.getStudent(requests);
 
         responseCall.enqueue(new Callback<StudentResponse>() {
@@ -142,15 +151,22 @@ public class LoginActivity extends AppCompatActivity {
                                    @NonNull Response<StudentResponse> response) {
                 if (response.isSuccessful()) {
                     StudentResponse studentResponse = response.body();
-                    String token = studentResponse.getToken();
-                    AuthManager.saveToken(LoginActivity.this, token);
-                    Toast.makeText(LoginActivity.this,
-                            "Успешный вход",
-                            Toast.LENGTH_SHORT
-                    ).show();
+                    if (studentResponse != null) {
+                        String token = studentResponse.getToken();
+                        AuthManager.saveToken(LoginActivity.this, token);
+                        Toast.makeText(LoginActivity.this,
+                                "Успешный вход",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        switchToActivity();
+                        // TODO: добавьте переключение на профиль, если необходимо
 
-                    // TODO: add switching to Profile
-
+                    } else {
+                        Toast.makeText(LoginActivity.this,
+                                "Ответ сервера не содержит данных пользователя",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
                 } else {
                     Toast.makeText(LoginActivity.this,
                             "Неверный логин или пароль",
@@ -162,10 +178,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<StudentResponse> call,
                                   @NonNull Throwable t) {
-                Toast.makeText(LoginActivity.this,
-                        "Что-то пошло не так :(",
-                        Toast.LENGTH_SHORT
-                ).show();
+                if (t instanceof HttpException) {
+                    HttpException httpException = (HttpException) t;
+                    int statusCode = httpException.code();
+                    Toast.makeText(LoginActivity.this,
+                            "Ошибка входа. Код ответа: " + statusCode,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else {
+                    Toast.makeText(LoginActivity.this,
+                            "Ошибка входа: " + t.getMessage(),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+                t.printStackTrace();
             }
         });
     }
