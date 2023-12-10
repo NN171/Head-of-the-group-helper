@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         final TextInputEditText editTextEmail = findViewById(R.id.login_email);
         final TextInputEditText editTextPassword = findViewById(R.id.login_password);
         final AppCompatButton loginButton = findViewById(R.id.login_button);
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
         final ProgressBar progressBar = findViewById(R.id.progress_bar);
         final TextView toRegistration = findViewById(R.id.to_registration);
         final TextView resetPassword = findViewById(R.id.password_reset);
@@ -135,15 +134,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void switchToActivity(){
-        Context context = getApplicationContext();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        context.startActivity(intent);
-    }
     private void loginStudent(String email, String password) {
-        ServiceAPI serviceAPI = ClientAPI.getServiceApi();
+        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         LoginRequest requests = new LoginRequest(email, password);
-        Call<StudentResponse> responseCall = serviceAPI.getStudent(requests);
+        Call<StudentResponse> responseCall = serviceAPI.authenticate(requests);
 
         responseCall.enqueue(new Callback<StudentResponse>() {
             @Override
@@ -158,7 +152,8 @@ public class LoginActivity extends AppCompatActivity {
                                 "Успешный вход",
                                 Toast.LENGTH_SHORT
                         ).show();
-                        switchToActivity();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
                         // TODO: добавьте переключение на профиль, если необходимо
 
                     } else {
@@ -169,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(LoginActivity.this,
-                            "Неверный логин или пароль",
+                            "Неверный логин или пароль"+response.code(),
                             Toast.LENGTH_SHORT
                     ).show();
                 }
@@ -178,19 +173,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<StudentResponse> call,
                                   @NonNull Throwable t) {
-                if (t instanceof HttpException) {
-                    HttpException httpException = (HttpException) t;
-                    int statusCode = httpException.code();
-                    Toast.makeText(LoginActivity.this,
-                            "Ошибка входа. Код ответа: " + statusCode,
-                            Toast.LENGTH_SHORT
-                    ).show();
-                } else {
-                    Toast.makeText(LoginActivity.this,
-                            "Ошибка входа: " + t.getMessage(),
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
                 t.printStackTrace();
             }
         });

@@ -105,12 +105,12 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void registerUser(String userName, String password) {
-        ServiceAPI serviceAPI = ClientAPI.getServiceApi();
+        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         StudentRequests login = new StudentRequests(userName, password);
         login.setEmail(userName);
         login.setPassword(password);
 
-        Call<StudentRequests> call = serviceAPI.createStudent(login);
+        Call<StudentRequests> call = serviceAPI.register(login);
         call.enqueue(new Callback<StudentRequests>() {
             @Override
             public void onResponse(@NonNull Call<StudentRequests> call,
