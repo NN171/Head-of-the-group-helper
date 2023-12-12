@@ -12,6 +12,7 @@
     <string name="login">Авторизация</string>
     <string name="password">Пароль</string>
     <string name="email">Email</string>
+    <string name="remember_me_checkbox">Запомнить меня</string>
     <string name="reset_password"><u>Забыли пароль?</u></string>
 
     <string name="register">Регистрация</string>
