@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.immortalidiot.studentapp.databinding.FragmentRegistrationBinding;
 import com.immortalidiot.studentapp.db.ClientAPI;
 import com.immortalidiot.studentapp.db.ServiceAPI;
@@ -23,7 +22,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegistrationFragment extends FragmentUtils {
-    FirebaseAuth auth = FirebaseAuth.getInstance();
     CallbackFragment fragment;
     FragmentRegistrationBinding binding;
 

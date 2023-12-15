@@ -1,35 +1,33 @@
 package com.immortalidiot.studentapp.auth;
 
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.immortalidiot.studentapp.databinding.ForgotDialogBinding;
 import com.immortalidiot.studentapp.databinding.FragmentLoginBinding;
+import com.immortalidiot.studentapp.db.ClientAPI;
+import com.immortalidiot.studentapp.db.ServiceAPI;
+import com.immortalidiot.studentapp.requests.LoginRequest;
+import com.immortalidiot.studentapp.requests.StudentResponse;
 import com.immortalidiot.studentapp.ui.profile.ProfileFragment;
-import com.immortalidiot.studentapp.R;
 
-import java.util.Objects;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginFragment extends FragmentUtils {
-    FirebaseAuth auth = FirebaseAuth.getInstance();
     CallbackFragment fragment;
     FragmentLoginBinding binding;
     ForgotDialogBinding forgotDialogBinding;
@@ -46,12 +44,6 @@ public class LoginFragment extends FragmentUtils {
             String password = preferences.getString("password", "");
             binding.loginEmail.setText(email);
             binding.loginPassword.setText(password);
-            FirebaseUser user = auth.getCurrentUser();
-            if ((user != null) && user.isEmailVerified()) {
-                if (fragment != null) {
-                    fragment.changeFragment(new ProfileFragment(), false);
-                }
-            }
         }
     }
 
@@ -99,87 +91,89 @@ public class LoginFragment extends FragmentUtils {
                 return;
             }
 
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                progressBar.setVisibility(View.GONE);
-
-                if (task.isSuccessful()) {
-                    if (Objects.requireNonNull(auth.getCurrentUser()).isEmailVerified()) {
-                        sharedPreferences.edit()
-                                        .putString("email", email)
-                                        .putString("password", password)
-                                        .apply();
-
-                        Toast.makeText(getContext(),
-                                "Успешный вход",
-                                Toast.LENGTH_SHORT
-                        ).show();
-
-                        if (fragment != null) {
-                            ProfileFragment profileFragment = new ProfileFragment();
-                            profileFragment.setCallbackFragment(fragment);
-                            fragment.changeFragment(profileFragment, true);
-                        }
-                    } else {
-                        Toast.makeText(getContext(),
-                                "Неверный логин, или пароль или почта не подтверждена",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    }
-                } else {
-                    Toast.makeText(getContext(),
-                            "Неверный логин или пароль",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            });
+            loginStudent(email, password);
         });
 
-        binding.passwordReset.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            View dialogView = getLayoutInflater().inflate(R.layout.forgot_dialog, null);
-            TextInputEditText email = dialogView.findViewById(R.id.email_text_field);
-            builder.setView(dialogView);
-            AlertDialog dialog = builder.create();
+        // TODO: password reset feature using personal db (not FB)
+//        binding.passwordReset.setOnClickListener(v -> {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//            View dialogView = getLayoutInflater().inflate(R.layout.forgot_dialog, null);
+//            TextInputEditText email = dialogView.findViewById(R.id.email_text_field);
+//            builder.setView(dialogView);
+//            AlertDialog dialog = builder.create();
 
-            dialogView.findViewById(R.id.reset_button)
-                    .setOnClickListener(t -> {
-                        String user_email = email.toString();
-                        if (TextUtils.isEmpty(user_email) && !Patterns.EMAIL_ADDRESS.
-                                matcher(user_email).matches()) {
-                            Toast.makeText(getContext(),
-                                            "Введите почту",
-                                            Toast.LENGTH_LONG
-                            ).show();
-                            return;
-                        }
-                        auth.sendPasswordResetEmail(user_email)
-                                .addOnCompleteListener(task -> {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(getContext(),
-                                                        "На вашу почту отправлено письмо",
-                                                        Toast.LENGTH_LONG
-                                        ).show();
-                                        dialog.dismiss();
-                                    } else {
-                                        Toast.makeText(getContext(),
-                                                        "Что-то пошло не так :(",
-                                                        Toast.LENGTH_SHORT
-                                        ).show();
-                                    }
-                                });
-                    });
-
-            dialogView.findViewById(R.id.cancel_button)
-                    .setOnClickListener(t -> dialog.dismiss());
-            if (dialog.getWindow() != null) {
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-            }
-            dialog.show();
-        });
+//            dialogView.findViewById(R.id.reset_button)
+//                    .setOnClickListener(t -> {
+//                        String user_email = email.toString();
+//                        if (TextUtils.isEmpty(user_email) && !Patterns.EMAIL_ADDRESS.
+//                                matcher(user_email).matches()) {
+//                            Toast.makeText(getContext(),
+//                                            "Введите почту",
+//                                            Toast.LENGTH_LONG
+//                            ).show();
+//                            return;
+//                        }
+//                        auth.sendPasswordResetEmail(user_email)
+//                                .addOnCompleteListener(task -> {
+//                                    if (task.isSuccessful()) {
+//                                        Toast.makeText(getContext(),
+//                                                        "На вашу почту отправлено письмо",
+//                                                        Toast.LENGTH_LONG
+//                                        ).show();
+//                                        dialog.dismiss();
+//                                    } else {
+//                                        Toast.makeText(getContext(),
+//                                                        "Что-то пошло не так :(",
+//                                                        Toast.LENGTH_SHORT
+//                                        ).show();
+//                                    }
+//                                });
+//                    });
+//            dialogView.findViewById(R.id.cancel_button)
+//                    .setOnClickListener(t -> dialog.dismiss());
+//            if (dialog.getWindow() != null) {
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+//            }
+//            dialog.show();
+//        });
 
         return view;
     }
     public void setCallbackFragment(CallbackFragment fragment) {
         this.fragment = fragment;
+    }
+
+    private void loginStudent(String email, String password) {
+        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
+        LoginRequest request = new LoginRequest(email, password);
+        Call<StudentResponse> responseCall = serviceAPI.authenticate(request);
+
+        responseCall.enqueue(new Callback<StudentResponse>() {
+            @Override
+            public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
+                StudentResponse studentResponse = response.body();
+                if (studentResponse != null) {
+                    String token = studentResponse.getToken();
+                    AuthManager.saveToken(getContext(), token);
+                    Toast.makeText(getContext(),
+                            "Успешный вход",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                    goToProfileFragment();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StudentResponse> call, Throwable t) {
+
+            }
+        });
+    }
+    private void goToProfileFragment() {
+        if (fragment != null) {
+            ProfileFragment profileFragment = new ProfileFragment();
+            profileFragment.setCallbackFragment(fragment);
+            fragment.changeFragment(profileFragment, false);
+        }
     }
 }
