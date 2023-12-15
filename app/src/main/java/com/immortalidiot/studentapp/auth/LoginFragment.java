@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatCheckBox;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.immortalidiot.studentapp.databinding.ForgotDialogBinding;
 import com.immortalidiot.studentapp.databinding.FragmentLoginBinding;
 import com.immortalidiot.studentapp.db.ClientAPI;

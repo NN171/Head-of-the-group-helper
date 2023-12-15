@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
 import com.immortalidiot.studentapp.MainActivity;
 import com.immortalidiot.studentapp.R;
 import com.immortalidiot.studentapp.db.ClientAPI;
