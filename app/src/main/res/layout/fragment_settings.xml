@@ -11,8 +11,7 @@
         android:id="@+id/parentSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        >
+        android:layout_margin="16dp">
 
         <TextView
             android:id="@+id/textSettings"
@@ -23,7 +22,7 @@
             android:textColor="@color/grey"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/rectangleProfile"
@@ -41,8 +40,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
                 app:layout_constraintStart_toStartOf="@id/rectangleProfile"
                 app:layout_constraintEnd_toEndOf="@id/rectangleProfile"
-                android:background="@drawable/rounded_rectangle_grey"
-                />
+                android:background="@drawable/rounded_rectangle_grey"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userAvatar"
@@ -63,7 +61,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/lato"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="start"
                 android:text="@string/user_name"
                 android:textColor="@color/grey"
@@ -76,14 +74,13 @@
                 android:id="@+id/userGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
                 android:fontFamily="@font/lato"
                 android:text="@string/user_group"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@id/userName"
                 app:layout_constraintTop_toBottomOf="@id/userName"
-                app:layout_constraintWidth_default="wrap"/>
+                app:layout_constraintWidth_default="wrap" />
 
 
             <ImageButton
@@ -98,7 +95,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
                 app:layout_constraintTop_toTopOf="@id/rectangleProfile"
                 app:layout_constraintEnd_toEndOf="@id/rectangleProfile"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -135,7 +132,7 @@
                 app:layout_constraintTop_toTopOf="@id/rectangleTheme"
                 app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
                 app:layout_constraintEnd_toStartOf="@id/themeLight"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"/>
 
             <ImageButton
                 android:id="@+id/themeLight"
@@ -152,7 +149,7 @@
                 app:layout_constraintEnd_toStartOf="@id/themeDark"
                 app:layout_constraintStart_toEndOf="@id/themeAuto"
                 app:layout_constraintTop_toTopOf="@id/rectangleTheme"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"/>
 
             <ImageButton
                 android:id="@+id/themeDark"
@@ -169,7 +166,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
                 app:layout_constraintEnd_toEndOf="@id/rectangleTheme"
                 android:backgroundTint="#00ffffff"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -202,7 +199,7 @@
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
                 app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-                app:layout_constraintTop_toTopOf="@id/rectangleSettings" />
+                app:layout_constraintTop_toTopOf="@id/rectangleSettings"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/safety"
@@ -224,7 +221,7 @@
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -233,7 +230,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/arrow"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -266,13 +263,13 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/arrow"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/rectangleSuport"
+            android:id="@+id/rectangleSupport"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/rectangleSettings"
@@ -294,9 +291,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toTopOf="@id/rectangleSuport"
-                app:layout_constraintStart_toStartOf="@id/rectangleSuport"
-                app:layout_constraintEnd_toEndOf="@id/rectangleSuport"
+                app:layout_constraintTop_toTopOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
                 android:fontFamily="@font/lato_bold"
                 android:textColor="@color/main_blue"
                 android:textSize="17sp"
@@ -307,8 +304,8 @@
                 android:id="@+id/askQuestion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/rectangleSuport"
-                app:layout_constraintStart_toStartOf="@id/rectangleSuport"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
                 app:layout_constraintTop_toBottomOf="@id/supportBlockTitle"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginTop="10dp">
@@ -332,15 +329,15 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/arrow"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/contactSupport"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/rectangleSuport"
-                app:layout_constraintStart_toStartOf="@id/rectangleSuport"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
                 app:layout_constraintTop_toBottomOf="@id/askQuestion"
                 android:layout_marginHorizontal="28dp">
 
@@ -363,17 +360,17 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/arrow"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/review"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/rectangleSuport"
-                app:layout_constraintStart_toStartOf="@id/rectangleSuport"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
                 app:layout_constraintTop_toBottomOf="@id/contactSupport"
-                app:layout_constraintBottom_toBottomOf="@id/rectangleSuport"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleSupport"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginBottom="10dp">
 
@@ -396,10 +393,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/arrow"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>
