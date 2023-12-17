@@ -72,7 +72,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 return;
             }
 
-            registerUser(email, password);
+            // registerUser(email, password, );
         });
 
         toLogin.setOnClickListener(v -> {
@@ -81,33 +81,31 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void registerUser(String userName, String password) {
-        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
-        StudentRequests login = new StudentRequests(userName, password);
-        login.setEmail(userName);
-        login.setPassword(password);
-
-        Call<StudentRequests> call = serviceAPI.register(login);
-        call.enqueue(new Callback<StudentRequests>() {
-            @Override
-            public void onResponse(@NonNull Call<StudentRequests> call,
-                                   @NonNull Response<StudentRequests> response) {
-                Toast.makeText(RegistrationActivity.this,
-                        "Аккаунт создан",
-                        Toast.LENGTH_SHORT).show();
-                // TODO: add switching to Profile
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<StudentRequests> call,
-                                  @NonNull Throwable t) {
-                Toast.makeText(RegistrationActivity.this,
-                        "Ошибка сети",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
-
-    }
-
+//    private void registerUser(String userName, String password, int studentId) {
+//        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
+//        StudentRequests login = new StudentRequests(userName, password, studentId);
+//        login.setEmail(userName);
+//        login.setPassword(password);
+//
+//        Call<StudentRequests> call = serviceAPI.register(login);
+//        call.enqueue(new Callback<StudentRequests>() {
+//            @Override
+//            public void onResponse(@NonNull Call<StudentRequests> call,
+//                                   @NonNull Response<StudentRequests> response) {
+//                Toast.makeText(RegistrationActivity.this,
+//                        "Аккаунт создан",
+//                        Toast.LENGTH_SHORT).show();
+//                // TODO: add switching to Profile
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<StudentRequests> call,
+//                                  @NonNull Throwable t) {
+//                Toast.makeText(RegistrationActivity.this,
+//                        "Ошибка сети",
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//        });
+//  }
 }

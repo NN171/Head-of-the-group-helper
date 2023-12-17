@@ -1,13 +1,14 @@
 package com.immortalidiot.studentapp.requests;
 
 public class StudentRequests {
-    private int studentId;
+    private final int studentId;
     private String email;
     private String password;
 
-    public StudentRequests(String email, String password) {
+    public StudentRequests(String email, String password, int studentId) {
         this.email = email;
         this.password = password;
+        this.studentId = studentId;
     }
 
 

@@ -41,6 +41,7 @@ public class RegistrationFragment extends FragmentUtils {
         binding.regButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(binding.regEmail.getText());
+            String studentId = String.valueOf(binding.regStudentIdField.getText());
             String password = String.valueOf(binding.regPassword.getText());
             String passwordConfirmation = String.valueOf(binding.passwordConfirmation.getText());
 
@@ -65,13 +66,21 @@ public class RegistrationFragment extends FragmentUtils {
                 return;
             }
 
+            if (TextUtils.isEmpty(studentId)) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(),
+                        "Введите номер студенческого билета",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+
             if (!password.equals(passwordConfirmation)) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(),
                         "Пароли не совпадают", Toast.LENGTH_SHORT).show();
                 return;
             }
-            registerUser(email, password);
+            registerUser(email, password, Integer.parseInt(studentId));
         });
         return view;
     }
@@ -84,9 +93,9 @@ public class RegistrationFragment extends FragmentUtils {
         fragmentManager.popBackStack();
     }
 
-    private void registerUser(String userName, String password) {
+    private void registerUser(String userName, String password, int studentId) {
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
-        StudentRequests login = new StudentRequests(userName, password);
+        StudentRequests login = new StudentRequests(userName, password, studentId);
         login.setEmail(userName);
         login.setPassword(password);
 
