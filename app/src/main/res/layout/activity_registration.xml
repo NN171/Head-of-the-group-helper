@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
         app:flow_wrapMode="aligned"
         app:flow_verticalGap="15dp"
         app:constraint_referenced_ids="login_textview, reg_email_field, reg_password_field, password_confirmation_field, reg_button, to_login"
@@ -84,7 +85,7 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
