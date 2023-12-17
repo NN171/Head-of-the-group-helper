@@ -11,12 +11,17 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.immortalidiot.studentapp.databinding.FragmentRegistrationBinding;
+import com.immortalidiot.studentapp.db.ClientAPI;
+import com.immortalidiot.studentapp.db.ServiceAPI;
+import com.immortalidiot.studentapp.requests.StudentRequests;
 import com.immortalidiot.studentapp.ui.profile.ProfileFragment;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegistrationFragment extends FragmentUtils {
-    FirebaseAuth auth = FirebaseAuth.getInstance();
     CallbackFragment fragment;
     FragmentRegistrationBinding binding;
 
@@ -36,6 +41,7 @@ public class RegistrationFragment extends FragmentUtils {
         binding.regButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(binding.regEmail.getText());
+            String studentId = String.valueOf(binding.regStudentIdField.getText());
             String password = String.valueOf(binding.regPassword.getText());
             String passwordConfirmation = String.valueOf(binding.passwordConfirmation.getText());
 
@@ -60,52 +66,22 @@ public class RegistrationFragment extends FragmentUtils {
                 return;
             }
 
+            if (TextUtils.isEmpty(studentId)) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(),
+                        "Введите номер студенческого билета",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+
             if (!password.equals(passwordConfirmation)) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(),
                         "Пароли не совпадают", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(t -> {
-                progressBar.setVisibility(View.GONE);
-                if (fragment != null) {
-                    ProfileFragment profileFragment = new ProfileFragment();
-                    profileFragment.setCallbackFragment(fragment);
-                    fragment.changeFragment(profileFragment, true);
-                }
-                // TODO: fix email verification
-
-//                if (t.isSuccessful()) {
-//                    auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task -> {
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(getContext(),
-//                                    "Аккаунт создан, пожалуйста подтвердите почту",
-//                                    Toast.LENGTH_SHORT)
-//                                    .show();
-//                        } else {
-//                            Toast.makeText(getContext(),
-//                                    "Ошибка регистрации: проверьте подключение к сети",
-//                                    Toast.LENGTH_SHORT)
-//                                    .show();
-//                        }
-//                    });
-//                    if (fragment != null) {
-//                        ProfileFragment profileFragment = new ProfileFragment();
-//                        profileFragment.setCallbackFragment(fragment);
-//                        fragment.changeFragment(profileFragment, true);
-//                    }
-//                } else {
-//                    Toast.makeText(getContext(),
-//                                    "Ошибка регистрации: попробуйте позднее",
-//                                    Toast.LENGTH_SHORT)
-//                            .show();
-//                }
-            });
-
+            registerUser(email, password, Integer.parseInt(studentId));
         });
-
-
         return view;
     }
 
@@ -115,5 +91,36 @@ public class RegistrationFragment extends FragmentUtils {
     private void closeFragment() {
         FragmentManager fragmentManager = getParentFragmentManager();
         fragmentManager.popBackStack();
+    }
+
+    private void registerUser(String userName, String password, int studentId) {
+        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
+        StudentRequests login = new StudentRequests(userName, password, studentId);
+        login.setEmail(userName);
+        login.setPassword(password);
+
+        Call<StudentRequests> call = serviceAPI.register(login);
+        call.enqueue(new Callback<StudentRequests>() {
+            @Override
+            public void onResponse(Call<StudentRequests> call, Response<StudentRequests> response) {
+                Toast.makeText(getContext(),
+                        "Аккаунт создан",
+                        Toast.LENGTH_SHORT)
+                        .show();
+                if (fragment != null) {
+                    ProfileFragment profileFragment = new ProfileFragment();
+                    profileFragment.setCallbackFragment(fragment);
+                    fragment.changeFragment(profileFragment, false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StudentRequests> call, Throwable t) {
+                Toast.makeText(getContext(),
+                        "Ошибка сети",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 }
