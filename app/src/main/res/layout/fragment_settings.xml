@@ -1,250 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
+    android:theme="@style/Theme.StudentApp"
     tools:context=".ui.settings.SettingsFragment">
 
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:constraint_referenced_ids="rectangleProfile, userAvatar, userName, userGroup, infoProfile" />
-
-    <TextView
-        android:id="@+id/textSettings"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/title_settings"
-        android:textColor="@color/grey"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="16dp">
 
-    <ImageView
-        android:id="@+id/rectangleProfile"
-        android:adjustViewBounds="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/rectangle_profile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textSettings"
-        android:contentDescription="@string/todo" />
+        <TextView
+            android:id="@+id/textSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/title_settings"
+            android:textColor="@color/grey"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userAvatar"
-        android:layout_width="76dp"
-        android:layout_height="76dp"
-        android:src="@drawable/avatar"
-        android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="@id/rectangleProfile"
-        app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
-        app:layout_constraintStart_toStartOf="@id/rectangleProfile"
-        android:contentDescription="@string/todo"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rectangleProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSettings">
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/lato_bold"
-        android:text="@string/user_name"
-        android:textColor="@color/grey"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@id/userGroup"
-        app:layout_constraintStart_toEndOf="@id/userAvatar"
-        app:layout_constraintTop_toTopOf="@id/rectangleProfile" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/rectangleProfile"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
+                app:layout_constraintStart_toStartOf="@id/rectangleProfile"
+                app:layout_constraintEnd_toEndOf="@id/rectangleProfile"
+                android:background="@drawable/rounded_rectangle_grey"/>
 
-    <TextView
-        android:id="@+id/userGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="40dp"
-        android:fontFamily="@font/lato_bold"
-        android:text="@string/user_group"
-        android:textColor="@color/grey"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
-        app:layout_constraintStart_toEndOf="@id/userAvatar"
-        app:layout_constraintTop_toBottomOf="@id/userName" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userAvatar"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:src="@drawable/avatar"
+                android:layout_marginStart="10dp"
+                android:layout_marginVertical="16dp"
+                app:layout_constraintTop_toTopOf="@id/rectangleProfile"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
+                app:layout_constraintStart_toStartOf="@id/rectangleProfile"
+                android:contentDescription="@string/todo"/>
 
-    <ImageButton
-        android:id="@+id/infoProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:padding="10dp"
-        android:adjustViewBounds="true"
-        android:background="#00ffffff"
-        android:src="@drawable/info_profile_icon"
-        app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
-        app:layout_constraintEnd_toEndOf="@id/rectangleProfile"
-        app:layout_constraintTop_toTopOf="@id/rectangleProfile"
-        android:contentDescription="@string/todo" />
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/lato"
+                android:textSize="16sp"
+                android:gravity="start"
+                android:text="@string/user_name"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toEndOf="@id/userAvatar"
+                app:layout_constraintEnd_toStartOf="@id/infoProfile"
+                app:layout_constraintTop_toTopOf="@id/rectangleProfile"
+                app:layout_constraintWidth_default="wrap"/>
 
-    <androidx.constraintlayout.widget.Group
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="visible"
-        app:constraint_referenced_ids="rectangleTheme, themeAuto, themeLight, themeDark" />
-
-    <ImageView
-        android:id="@+id/rectangleTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/rectangleProfile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/rectangle_theme"
-        android:contentDescription="@string/todo" />
-
-    <ImageButton
-        android:id="@+id/themeAuto"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
-        android:src="@drawable/theme_defoult_auto_icon"
-        android:backgroundTint="#00ffffff"
-        app:layout_constraintStart_toStartOf="@id/rectangleTheme"
-        app:layout_constraintTop_toTopOf="@id/rectangleTheme"
-        app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
-        app:layout_constraintEnd_toStartOf="@id/themeLight"
-        android:contentDescription="@string/todo" />
-
-    <ImageButton
-        android:id="@+id/themeLight"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
-        android:adjustViewBounds="true"
-        android:backgroundTint="#00ffffff"
-        android:src="@drawable/theme_active_sun_icon"
-        app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
-        app:layout_constraintEnd_toStartOf="@id/themeDark"
-        app:layout_constraintStart_toEndOf="@id/themeAuto"
-        app:layout_constraintTop_toTopOf="@id/rectangleTheme"
-        android:contentDescription="@string/todo" />
-
-    <ImageButton
-        android:id="@+id/themeDark"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
-        android:src="@drawable/theme_defoult_moon_icon"
-        app:layout_constraintStart_toEndOf="@id/themeLight"
-        app:layout_constraintTop_toTopOf="@id/rectangleTheme"
-        app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
-        app:layout_constraintEnd_toEndOf="@id/rectangleTheme"
-        android:backgroundTint="#00ffffff"
-        android:contentDescription="@string/todo" />
+            <TextView
+                android:id="@+id/userGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="@string/user_group"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/userName"
+                app:layout_constraintTop_toBottomOf="@id/userName"
+                app:layout_constraintWidth_default="wrap" />
 
 
-    <ImageView
-        android:id="@+id/rectangleSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rectangle_settings_account"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/rectangleTheme"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/todo" />
+            <ImageButton
+                android:id="@+id/infoProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:padding="6dp"
+                android:adjustViewBounds="true"
+                android:background="#00ffffff"
+                android:src="@drawable/info_profile_icon"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleProfile"
+                app:layout_constraintTop_toTopOf="@id/rectangleProfile"
+                app:layout_constraintEnd_toEndOf="@id/rectangleProfile"
+                android:contentDescription="@string/todo"/>
 
-    <TextView
-        android:id="@+id/settingAccountBlockTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/settings_account_block_title"
-        android:fontFamily="@font/lato_bold"
-        android:textColor="@color/main_blue"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
-        app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toTopOf="@id/rectangleSettings" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/deleteAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00ffffff"
-        android:src="@drawable/safety_button"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
-        app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toBottomOf="@id/settingAccountBlockTitle"
-        android:contentDescription="@string/todo" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rectangleTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/rectangleProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:backgroundTint="#00ffffff"
-        android:src="@drawable/delete_account_button"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
-        app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toBottomOf="@id/deleteAccount"
-        android:contentDescription="@string/todo" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/rounded_rectangle_blue"/>
 
-    <ImageView
-        android:id="@+id/rectangleSuport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rectangle_support"
-        app:layout_constraintTop_toBottomOf="@id/rectangleSettings"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/todo" />
+            <ImageButton
+                android:id="@+id/themeAuto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="0dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginVertical="12dp"
+                app:layout_constraintWidth_percent="0.3"
+                android:src="@drawable/theme_default_auto_icon"
+                android:backgroundTint="#00ffffff"
+                app:layout_constraintStart_toStartOf="@id/rectangleTheme"
+                app:layout_constraintTop_toTopOf="@id/rectangleTheme"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
+                app:layout_constraintEnd_toStartOf="@id/themeLight"
+                android:contentDescription="@string/todo"/>
 
-    <TextView
-        android:id="@+id/supportBlockTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toTopOf="@id/rectangleSuport"
-        app:layout_constraintStart_toStartOf="@id/rectangleSuport"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSuport"
-        android:fontFamily="@font/lato_bold"
-        android:textColor="@color/main_blue"
-        android:textSize="17sp"
-        android:text="@string/support_block_title"
-        />
+            <ImageButton
+                android:id="@+id/themeLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.3"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="0dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="12dp"
+                android:backgroundTint="#00ffffff"
+                android:src="@drawable/theme_active_sun_icon"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
+                app:layout_constraintEnd_toStartOf="@id/themeDark"
+                app:layout_constraintStart_toEndOf="@id/themeAuto"
+                app:layout_constraintTop_toTopOf="@id/rectangleTheme"
+                android:contentDescription="@string/todo"/>
 
-    <ImageButton
-        android:id="@+id/askQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#00ffffff"
-        android:src="@drawable/ask_question_button"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
-        app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toBottomOf="@id/supportBlockTitle"
-        android:contentDescription="@string/todo" />
+            <ImageButton
+                android:id="@+id/themeDark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.3"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginVertical="12dp"
+                android:src="@drawable/theme_default_moon_icon"
+                app:layout_constraintStart_toEndOf="@id/themeLight"
+                app:layout_constraintTop_toTopOf="@id/rectangleTheme"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleTheme"
+                app:layout_constraintEnd_toEndOf="@id/rectangleTheme"
+                android:backgroundTint="#00ffffff"
+                android:contentDescription="@string/todo"/>
 
-    <ImageButton
-        android:id="@+id/contactSupport"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:backgroundTint="#00ffffff"
-        android:src="@drawable/contact_support_button"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
-        app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toBottomOf="@id/askQuestion"
-        android:contentDescription="@string/todo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/review"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:backgroundTint="#00ffffff"
-        android:src="@drawable/review_button"
-        app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
-        app:layout_constraintStart_toStartOf="@id/rectangleSettings"
-        app:layout_constraintTop_toBottomOf="@id/contactSupport"
-        android:contentDescription="@string/todo" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rectangleSettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/rectangleTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/rounded_rectangle_grey"/>
+
+            <TextView
+                android:id="@+id/settingAccountBlockTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/settings_account_block_title"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/main_blue"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
+                app:layout_constraintStart_toStartOf="@id/rectangleSettings"
+                app:layout_constraintTop_toTopOf="@id/rectangleSettings"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/safety"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
+                app:layout_constraintStart_toStartOf="@id/rectangleSettings"
+                app:layout_constraintTop_toBottomOf="@id/settingAccountBlockTitle"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/lato"
+                    android:text="@string/safety"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/todo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/deleteAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSettings"
+                app:layout_constraintStart_toStartOf="@id/rectangleSettings"
+                app:layout_constraintTop_toBottomOf="@id/safety"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginVertical="10dp"
+                    android:text="@string/delete_account"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/red"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/todo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rectangleSupport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/rectangleSettings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/rounded_rectangle_grey"/>
+
+            <TextView
+                android:id="@+id/supportBlockTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/main_blue"
+                android:textSize="17sp"
+                android:text="@string/support_block_title"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/askQuestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
+                app:layout_constraintTop_toBottomOf="@id/supportBlockTitle"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginVertical="10dp"
+                    android:text="@string/ask_question"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/todo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contactSupport"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
+                app:layout_constraintTop_toBottomOf="@id/askQuestion"
+                android:layout_marginHorizontal="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginVertical="10dp"
+                    android:text="@string/contactSupport"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/todo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@id/rectangleSupport"
+                app:layout_constraintStart_toStartOf="@id/rectangleSupport"
+                app:layout_constraintTop_toBottomOf="@id/contactSupport"
+                app:layout_constraintBottom_toBottomOf="@id/rectangleSupport"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginVertical="10dp"
+                    android:text="@string/review"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/arrow"
+                    android:contentDescription="@string/todo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

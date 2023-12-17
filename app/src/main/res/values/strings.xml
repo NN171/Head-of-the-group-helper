@@ -21,9 +21,14 @@
     <string name="to_login"><u>Перейти в окно авторизации</u></string>
     <string name="to_registration"><u>Нет аккаунта?</u></string>
 
-    <string name="user_name">Иванов Александр\nДмитриевич</string>
+    <string name="user_name">Иванов Александр Дмитриевич</string>
     <string name="user_group">Студент группы УВП-212</string>
     <string name="settings_account_block_title">Управление аккаунтом</string>
+    <string name="safety">Безопасность</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="ask_question">Задать вопрос</string>
+    <string name="contactSupport">Связаться с поддержкой</string>
+    <string name="review">Оставить отзыв</string>
     <string name="support_block_title">Помощь и обратная связь</string>
     <string name="todo">TODO</string>
 
