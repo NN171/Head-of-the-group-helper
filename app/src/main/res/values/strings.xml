@@ -13,7 +13,7 @@
     <string name="password">Пароль</string>
     <string name="email">Email</string>
     <string name="remember_me_checkbox">Запомнить</string>
-    <string name="student_id">Номер студенческого билета</string>
+    <string name="student_id">Студенческий билет</string>
     <string name="reset_password"><u>Забыли пароль?</u></string>
 
     <string name="registration">Регистрация</string>

@@ -166,7 +166,7 @@
                     android:background="@drawable/white_rounded_background"
                     android:hint="@string/student_id"
                     android:imeOptions="actionDone"
-                    android:singleLine="true"
+                    android:singleLine="false"
                     tools:ignore="VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
