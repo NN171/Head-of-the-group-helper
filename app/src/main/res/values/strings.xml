@@ -12,11 +12,10 @@
     <string name="login">Авторизация</string>
     <string name="password">Пароль</string>
     <string name="email">Email</string>
-    <string name="remember_me_checkbox">Запомнить меня</string>
-    <string name="student_id">Номер студенческого билета</string>
+    <string name="remember_me_checkbox">Запомнить</string>
+    <string name="student_id">Студенческий билет</string>
     <string name="reset_password"><u>Забыли пароль?</u></string>
 
-    <string name="register">Регистрация</string>
     <string name="registration">Регистрация</string>
     <string name="password_confirmation">Подтвердите пароль</string>
     <string name="to_login"><u>Перейти в окно авторизации</u></string>
