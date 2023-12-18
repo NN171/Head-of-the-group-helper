@@ -8,12 +8,12 @@
     tools:context=".auth.RegistrationFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/parent_registration"
+        android:id="@+id/scroll_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/flow2"
+            android:id="@+id/registration_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/register"
+                android:text="@string/registration"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -66,7 +66,7 @@
                 android:background="@drawable/white_rounded_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/reg_email_field"
+                app:layout_constraintTop_toBottomOf="@id/reg_student_id"
                 app:layout_constraintWidth_default="percent"
                 app:layout_constraintWidth_percent="0.8">
 
@@ -125,7 +125,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/main_blue"
                 android:textSize="16sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/password_confirmation_field"
@@ -145,25 +145,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reg_button" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reg_student_id_field"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="83dp"
-            android:background="@drawable/white_rounded_background"
-            android:digits="0123456789"
-            android:inputType="numberPassword"
-            android:gravity="center"
-            android:hint="@string/student_id"
-            android:imeOptions="flagNavigateNext"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/flow2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_student_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_rounded_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reg_email_field"
+                app:layout_constraintWidth_percent="0.8"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reg_student_id_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="0123456789"
+                    android:background="@drawable/white_rounded_background"
+                    android:hint="@string/student_id"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    tools:ignore="VisualLintTextFieldSize" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
