@@ -70,12 +70,22 @@ public class LoginFragment extends FragmentUtils {
         binding.loginButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(binding.loginEmail.getText());
+            String studentId = String.valueOf(binding.regStudentIdField.getText());
             String password = String.valueOf(binding.loginPassword.getText());
 
             if (TextUtils.isEmpty(email)) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(),
                         "Введите почту",
+                        Toast.LENGTH_SHORT
+                ).show();
+                return;
+            }
+
+            if (TextUtils.isEmpty(studentId)) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(),
+                        "Введите номер студенческого билета",
                         Toast.LENGTH_SHORT
                 ).show();
                 return;
@@ -90,7 +100,7 @@ public class LoginFragment extends FragmentUtils {
                 return;
             }
 
-            loginStudent(email, password);
+            loginStudent(email, password, Integer.parseInt(studentId));
         });
 
         // TODO: password reset feature using personal db (not FB)
@@ -142,9 +152,9 @@ public class LoginFragment extends FragmentUtils {
         this.fragment = fragment;
     }
 
-    private void loginStudent(String email, String password) {
+    private void loginStudent(String email, String password, int studentId) {
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
-        LoginRequest request = new LoginRequest(email, password);
+        LoginRequest request = new LoginRequest(email, password, studentId);
         Call<StudentResponse> responseCall = serviceAPI.authenticate(request);
 
         responseCall.enqueue(new Callback<StudentResponse>() {
