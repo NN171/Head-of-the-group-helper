@@ -83,7 +83,8 @@
                     android:background="@drawable/white_rounded_background"
                     android:digits="0123456789"
                     android:hint="@string/student_id"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="flagNavigateNext"
+                    android:inputType="numberPassword"
                     android:singleLine="true"
                     tools:ignore="VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>

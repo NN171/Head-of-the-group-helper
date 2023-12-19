@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatCheckBox;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.immortalidiot.studentapp.NumericKeyboardTransformation;
 import com.immortalidiot.studentapp.databinding.ForgotDialogBinding;
 import com.immortalidiot.studentapp.databinding.FragmentLoginBinding;
 import com.immortalidiot.studentapp.db.ClientAPI;
@@ -61,6 +63,8 @@ public class LoginFragment extends FragmentUtils {
 
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
         ProgressBar progressBar = binding.progressBar;
+        final TextInputEditText studentIdInputField = binding.regStudentIdField;
+        studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
         binding.toRegistration.setOnClickListener(v -> {
             if (fragment != null) {
                 fragment.changeFragment(new RegistrationFragment(), true);
@@ -70,7 +74,7 @@ public class LoginFragment extends FragmentUtils {
         binding.loginButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(binding.loginEmail.getText());
-            String studentId = String.valueOf(binding.regStudentIdField.getText());
+            String studentId = String.valueOf(studentIdInputField.getText());
             String password = String.valueOf(binding.loginPassword.getText());
 
             if (TextUtils.isEmpty(email)) {
