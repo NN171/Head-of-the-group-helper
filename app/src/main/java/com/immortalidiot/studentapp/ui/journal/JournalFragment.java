@@ -17,15 +17,8 @@ public class JournalFragment extends FragmentUtils {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savesInstanceState) {
 
-        JournalViewModel journalViewModel =
-                new ViewModelProvider(this).get(JournalViewModel.class);
-
         com.immortalidiot.studentapp.databinding.FragmentJournalBinding binding =
                 FragmentJournalBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textJournal;
-        journalViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return binding.getRoot();
     }
 }
