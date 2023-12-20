@@ -167,7 +167,7 @@
                     android:background="@drawable/white_rounded_background"
                     android:hint="@string/student_id"
                     android:imeOptions="flagNavigateNext"
-                    android:singleLine="false"
+                    android:singleLine="true"
                     tools:ignore="VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
