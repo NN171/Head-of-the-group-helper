@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.immortalidiot.studentapp.NumericKeyboardTransformation;
 import com.immortalidiot.studentapp.databinding.FragmentRegistrationBinding;
 import com.immortalidiot.studentapp.db.ClientAPI;
 import com.immortalidiot.studentapp.db.ServiceAPI;
@@ -31,6 +33,8 @@ public class RegistrationFragment extends FragmentUtils {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         ProgressBar progressBar = binding.progressBar;
+        final TextInputEditText studentIdInputField = binding.regStudentIdField;
+        studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
 
         binding.toLogin.setOnClickListener(v -> {
             if (fragment != null) {
@@ -41,7 +45,7 @@ public class RegistrationFragment extends FragmentUtils {
         binding.regButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
             String email = String.valueOf(binding.regEmail.getText());
-            String studentId = String.valueOf(binding.regStudentIdField.getText());
+            String studentId = String.valueOf(studentIdInputField.getText());
             String password = String.valueOf(binding.regPassword.getText());
             String passwordConfirmation = String.valueOf(binding.passwordConfirmation.getText());
 

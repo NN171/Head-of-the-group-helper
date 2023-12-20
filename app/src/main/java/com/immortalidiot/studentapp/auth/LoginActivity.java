@@ -54,51 +54,51 @@ public class LoginActivity extends AppCompatActivity {
                         "Введите пароль", Toast.LENGTH_SHORT).show();
                 return;
             }
-            loginStudent(email, password);
+            // loginStudent(email, password);
         });
     }
 
-    private void loginStudent(String email, String password) {
-        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
-        LoginRequest requests = new LoginRequest(email, password);
-        Call<StudentResponse> responseCall = serviceAPI.authenticate(requests);
-
-        responseCall.enqueue(new Callback<StudentResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<StudentResponse> call,
-                                   @NonNull Response<StudentResponse> response) {
-                if (response.isSuccessful()) {
-                    StudentResponse studentResponse = response.body();
-                    if (studentResponse != null) {
-                        String token = studentResponse.getToken();
-                        AuthManager.saveToken(LoginActivity.this, token);
-                        Toast.makeText(LoginActivity.this,
-                                "Успешный вход",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        // TODO: добавьте переключение на профиль, если необходимо
-
-                    } else {
-                        Toast.makeText(LoginActivity.this,
-                                "Ответ сервера не содержит данных пользователя",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    }
-                } else {
-                    Toast.makeText(LoginActivity.this,
-                            "Неверный логин или пароль"+response.code(),
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<StudentResponse> call,
-                                  @NonNull Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }
+//    private void loginStudent(String email, String password) {
+//        ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
+//        LoginRequest requests = new LoginRequest(email, password, st);
+//        Call<StudentResponse> responseCall = serviceAPI.authenticate(requests);
+//
+//        responseCall.enqueue(new Callback<StudentResponse>() {
+//            @Override
+//            public void onResponse(@NonNull Call<StudentResponse> call,
+//                                   @NonNull Response<StudentResponse> response) {
+//                if (response.isSuccessful()) {
+//                    StudentResponse studentResponse = response.body();
+//                    if (studentResponse != null) {
+//                        String token = studentResponse.getToken();
+//                        AuthManager.saveToken(LoginActivity.this, token);
+//                        Toast.makeText(LoginActivity.this,
+//                                "Успешный вход",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                        // TODO: добавьте переключение на профиль, если необходимо
+//
+//                    } else {
+//                        Toast.makeText(LoginActivity.this,
+//                                "Ответ сервера не содержит данных пользователя",
+//                                Toast.LENGTH_SHORT
+//                        ).show();
+//                    }
+//                } else {
+//                    Toast.makeText(LoginActivity.this,
+//                            "Неверный логин или пароль"+response.code(),
+//                            Toast.LENGTH_SHORT
+//                    ).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<StudentResponse> call,
+//                                  @NonNull Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+//    }
 }
