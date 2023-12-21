@@ -33,6 +33,7 @@ public class LoginFragment extends FragmentUtils {
     FragmentLoginBinding binding;
     ForgotDialogBinding forgotDialogBinding;
     private SharedPreferences sharedPreferences;
+    ProgressBar progressBar;
 
     @Override
     public void onStart() {
@@ -62,7 +63,7 @@ public class LoginFragment extends FragmentUtils {
                 .putBoolean("remember_me", isChecked).apply());
 
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
-        ProgressBar progressBar = binding.progressBar;
+        progressBar = binding.progressBar;
         final TextInputEditText studentIdInputField = binding.regStudentIdField;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
         binding.toRegistration.setOnClickListener(v -> {
@@ -104,7 +105,7 @@ public class LoginFragment extends FragmentUtils {
                 return;
             }
 
-            loginStudent(email, password, Integer.parseInt(studentId), progressBar);
+            loginStudent(email, password, Integer.parseInt(studentId));
         });
 
         // TODO: password reset feature using personal db (not FB)
@@ -156,7 +157,8 @@ public class LoginFragment extends FragmentUtils {
         this.fragment = fragment;
     }
 
-    private void loginStudent(String email, String password, int studentId, ProgressBar progressBar) {
+    private void loginStudent(String email, String password, int studentId) {
+        progressBar = binding.progressBar;
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         LoginRequest request = new LoginRequest(email, password, studentId);
         Call<StudentResponse> responseCall = serviceAPI.authenticate(request);

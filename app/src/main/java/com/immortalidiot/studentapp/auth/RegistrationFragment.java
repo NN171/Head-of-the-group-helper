@@ -21,7 +21,6 @@ import com.immortalidiot.studentapp.ui.profile.ProfileFragment;
 
 import java.net.HttpURLConnection;
 
-import okhttp3.HttpUrl;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,13 +28,14 @@ import retrofit2.Response;
 public class RegistrationFragment extends FragmentUtils {
     CallbackFragment fragment;
     FragmentRegistrationBinding binding;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        ProgressBar progressBar = binding.progressBar;
+        progressBar = binding.progressBar;
         final TextInputEditText studentIdInputField = binding.regStudentIdField;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
 
@@ -87,7 +87,7 @@ public class RegistrationFragment extends FragmentUtils {
                         "Пароли не совпадают", Toast.LENGTH_SHORT).show();
                 return;
             }
-            registerUser(email, password, Integer.parseInt(studentId), progressBar);
+            registerUser(email, password, Integer.parseInt(studentId));
         });
         return view;
     }
@@ -100,7 +100,8 @@ public class RegistrationFragment extends FragmentUtils {
         fragmentManager.popBackStack();
     }
 
-    private void registerUser(String userName, String password, int studentId, ProgressBar progressBar) {
+    private void registerUser(String userName, String password, int studentId) {
+        progressBar = binding.progressBar;
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         StudentRequests login = new StudentRequests(userName, password, studentId);
         login.setEmail(userName);
