@@ -36,7 +36,7 @@ public class RegistrationFragment extends FragmentUtils {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         progressBar = binding.registrationProgressBar;
-        final TextInputEditText studentIdInputField = binding.regStudentIdField;
+        final TextInputEditText studentIdInputField = binding.registrationStudentId;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
 
         binding.registrationToLoginTextview.setOnClickListener(v -> {
@@ -101,7 +101,7 @@ public class RegistrationFragment extends FragmentUtils {
     }
 
     private void registerUser(String userName, String password, int studentId) {
-        progressBar = binding.progressBar;
+        progressBar = binding.registrationProgressBar;
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         StudentRequests login = new StudentRequests(userName, password, studentId);
         login.setEmail(userName);

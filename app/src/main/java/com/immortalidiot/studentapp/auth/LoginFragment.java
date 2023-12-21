@@ -64,7 +64,7 @@ public class LoginFragment extends FragmentUtils {
 
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
         progressBar = binding.loginProgressBar;
-        final TextInputEditText studentIdInputField = binding.regStudentIdField;
+        final TextInputEditText studentIdInputField = binding.loginStudentId;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
         binding.loginToRegistrationTextview.setOnClickListener(v -> {
             if (fragment != null) {
@@ -158,7 +158,7 @@ public class LoginFragment extends FragmentUtils {
     }
 
     private void loginStudent(String email, String password, int studentId) {
-        progressBar = binding.progressBar;
+        progressBar = binding.loginProgressBar;
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         LoginRequest request = new LoginRequest(email, password, studentId);
         Call<StudentResponse> responseCall = serviceAPI.authenticate(request);
