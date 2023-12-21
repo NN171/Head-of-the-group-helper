@@ -33,6 +33,7 @@ public class LoginFragment extends FragmentUtils {
     FragmentLoginBinding binding;
     ForgotDialogBinding forgotDialogBinding;
     private SharedPreferences sharedPreferences;
+    ProgressBar progressBar;
 
     @Override
     public void onStart() {
@@ -62,7 +63,7 @@ public class LoginFragment extends FragmentUtils {
                 .putBoolean("remember_me", isChecked).apply());
 
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
-        ProgressBar progressBar = binding.loginProgressBar;
+        progressBar = binding.loginProgressBar;
         final TextInputEditText studentIdInputField = binding.loginStudentId;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
         binding.loginToRegistrationTextview.setOnClickListener(v -> {
@@ -157,6 +158,7 @@ public class LoginFragment extends FragmentUtils {
     }
 
     private void loginStudent(String email, String password, int studentId) {
+        progressBar = binding.loginProgressBar;
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         LoginRequest request = new LoginRequest(email, password, studentId);
         Call<StudentResponse> responseCall = serviceAPI.authenticate(request);
@@ -165,14 +167,22 @@ public class LoginFragment extends FragmentUtils {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
                 StudentResponse studentResponse = response.body();
-                if (studentResponse != null) {
-                    String token = studentResponse.getToken();
-                    AuthManager.saveToken(getContext(), token);
+                if (response.isSuccessful()) {
+                    if (studentResponse != null) {
+                        String token = studentResponse.getToken();
+                        AuthManager.saveToken(getContext(), token);
+                        Toast.makeText(getContext(),
+                                        "Успешный вход",
+                                        Toast.LENGTH_SHORT)
+                                .show();
+                        goToProfileFragment();
+                    }
+                }
+                else if (response.code() == 403){
                     Toast.makeText(getContext(),
-                            "Успешный вход",
-                            Toast.LENGTH_SHORT)
-                            .show();
-                    goToProfileFragment();
+                            "Неверный номер студенческого билета или пароль",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 

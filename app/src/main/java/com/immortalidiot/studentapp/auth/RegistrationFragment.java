@@ -19,6 +19,8 @@ import com.immortalidiot.studentapp.db.ServiceAPI;
 import com.immortalidiot.studentapp.requests.StudentRequests;
 import com.immortalidiot.studentapp.ui.profile.ProfileFragment;
 
+import java.net.HttpURLConnection;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,13 +28,14 @@ import retrofit2.Response;
 public class RegistrationFragment extends FragmentUtils {
     CallbackFragment fragment;
     FragmentRegistrationBinding binding;
+    ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        ProgressBar progressBar = binding.registrationProgressBar;
+        progressBar = binding.registrationProgressBar;
         final TextInputEditText studentIdInputField = binding.registrationStudentId;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
 
@@ -98,6 +101,7 @@ public class RegistrationFragment extends FragmentUtils {
     }
 
     private void registerUser(String userName, String password, int studentId) {
+        progressBar = binding.registrationProgressBar;
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         StudentRequests login = new StudentRequests(userName, password, studentId);
         login.setEmail(userName);
@@ -107,15 +111,23 @@ public class RegistrationFragment extends FragmentUtils {
         call.enqueue(new Callback<StudentRequests>() {
             @Override
             public void onResponse(Call<StudentRequests> call, Response<StudentRequests> response) {
-                Toast.makeText(getContext(),
-                        "Аккаунт создан",
-                        Toast.LENGTH_SHORT)
-                        .show();
-                if (fragment != null) {
-                    ProfileFragment profileFragment = new ProfileFragment();
-                    profileFragment.setCallbackFragment(fragment);
-                    fragment.changeFragment(profileFragment, false);
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(),
+                                    "Аккаунт создан",
+                                    Toast.LENGTH_SHORT).show();
+                    if (fragment != null) {
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        profileFragment.setCallbackFragment(fragment);
+                        fragment.changeFragment(profileFragment, false);
+                    }
                 }
+                else if (response.code() == HttpURLConnection.HTTP_CONFLICT) {
+                    Toast.makeText(getContext(),
+                            "Такой ID уже существует",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
