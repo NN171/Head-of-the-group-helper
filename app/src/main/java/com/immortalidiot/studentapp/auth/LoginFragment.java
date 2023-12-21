@@ -104,7 +104,7 @@ public class LoginFragment extends FragmentUtils {
                 return;
             }
 
-            loginStudent(email, password, Integer.parseInt(studentId));
+            loginStudent(email, password, Integer.parseInt(studentId), progressBar);
         });
 
         // TODO: password reset feature using personal db (not FB)
@@ -156,7 +156,7 @@ public class LoginFragment extends FragmentUtils {
         this.fragment = fragment;
     }
 
-    private void loginStudent(String email, String password, int studentId) {
+    private void loginStudent(String email, String password, int studentId, ProgressBar progressBar) {
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         LoginRequest request = new LoginRequest(email, password, studentId);
         Call<StudentResponse> responseCall = serviceAPI.authenticate(request);
@@ -165,14 +165,22 @@ public class LoginFragment extends FragmentUtils {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
                 StudentResponse studentResponse = response.body();
-                if (studentResponse != null) {
-                    String token = studentResponse.getToken();
-                    AuthManager.saveToken(getContext(), token);
+                if (response.isSuccessful()) {
+                    if (studentResponse != null) {
+                        String token = studentResponse.getToken();
+                        AuthManager.saveToken(getContext(), token);
+                        Toast.makeText(getContext(),
+                                        "Успешный вход",
+                                        Toast.LENGTH_SHORT)
+                                .show();
+                        goToProfileFragment();
+                    }
+                }
+                else if (response.code() == 403){
                     Toast.makeText(getContext(),
-                            "Успешный вход",
-                            Toast.LENGTH_SHORT)
-                            .show();
-                    goToProfileFragment();
+                            "Неверный номер студенческого билета или пароль",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 

@@ -19,6 +19,9 @@ import com.immortalidiot.studentapp.db.ServiceAPI;
 import com.immortalidiot.studentapp.requests.StudentRequests;
 import com.immortalidiot.studentapp.ui.profile.ProfileFragment;
 
+import java.net.HttpURLConnection;
+
+import okhttp3.HttpUrl;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,7 +87,7 @@ public class RegistrationFragment extends FragmentUtils {
                         "Пароли не совпадают", Toast.LENGTH_SHORT).show();
                 return;
             }
-            registerUser(email, password, Integer.parseInt(studentId));
+            registerUser(email, password, Integer.parseInt(studentId), progressBar);
         });
         return view;
     }
@@ -97,7 +100,7 @@ public class RegistrationFragment extends FragmentUtils {
         fragmentManager.popBackStack();
     }
 
-    private void registerUser(String userName, String password, int studentId) {
+    private void registerUser(String userName, String password, int studentId, ProgressBar progressBar) {
         ServiceAPI serviceAPI = ClientAPI.getClient().create(ServiceAPI.class);
         StudentRequests login = new StudentRequests(userName, password, studentId);
         login.setEmail(userName);
@@ -107,15 +110,23 @@ public class RegistrationFragment extends FragmentUtils {
         call.enqueue(new Callback<StudentRequests>() {
             @Override
             public void onResponse(Call<StudentRequests> call, Response<StudentRequests> response) {
-                Toast.makeText(getContext(),
-                        "Аккаунт создан",
-                        Toast.LENGTH_SHORT)
-                        .show();
-                if (fragment != null) {
-                    ProfileFragment profileFragment = new ProfileFragment();
-                    profileFragment.setCallbackFragment(fragment);
-                    fragment.changeFragment(profileFragment, false);
+                if (response.isSuccessful()) {
+                    Toast.makeText(getContext(),
+                                    "Аккаунт создан",
+                                    Toast.LENGTH_SHORT).show();
+                    if (fragment != null) {
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        profileFragment.setCallbackFragment(fragment);
+                        fragment.changeFragment(profileFragment, false);
+                    }
                 }
+                else if (response.code() == HttpURLConnection.HTTP_CONFLICT) {
+                    Toast.makeText(getContext(),
+                            "Такой ID уже существует",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
