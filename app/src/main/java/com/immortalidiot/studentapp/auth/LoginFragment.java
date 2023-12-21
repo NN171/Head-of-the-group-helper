@@ -27,7 +27,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class LoginFragment extends FragmentUtils {
     CallbackFragment fragment;
     FragmentLoginBinding binding;
@@ -37,12 +36,14 @@ public class LoginFragment extends FragmentUtils {
     @Override
     public void onStart() {
         super.onStart();
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         boolean rememberMe = preferences.getBoolean("remember_me", false);
 
         if (rememberMe) {
             String email = preferences.getString("email", "");
             String password = preferences.getString("password", "");
+
             binding.loginEmail.setText(email);
             binding.loginPassword.setText(password);
         }
@@ -53,18 +54,20 @@ public class LoginFragment extends FragmentUtils {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-
         View view = binding.getRoot();
+
         AppCompatCheckBox checkBox = binding.loginRememberMeCheckbox;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> sharedPreferences
-                .edit()
-                .putBoolean("remember_me", isChecked).apply());
+
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) ->
+                sharedPreferences.edit()
+                                 .putBoolean("remember_me", isChecked).apply());
 
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
         ProgressBar progressBar = binding.loginProgressBar;
         final TextInputEditText studentIdInputField = binding.loginStudentId;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
+
         binding.loginToRegistrationTextview.setOnClickListener(v -> {
             if (fragment != null) {
                 fragment.changeFragment(new RegistrationFragment(), true);
@@ -73,6 +76,7 @@ public class LoginFragment extends FragmentUtils {
 
         binding.loginButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
+
             String email = String.valueOf(binding.loginEmail.getText());
             String studentId = String.valueOf(studentIdInputField.getText());
             String password = String.valueOf(binding.loginPassword.getText());
@@ -80,27 +84,27 @@ public class LoginFragment extends FragmentUtils {
             if (TextUtils.isEmpty(email)) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(),
-                        "Введите почту",
-                        Toast.LENGTH_SHORT
-                ).show();
+                          "Введите почту",
+                               Toast.LENGTH_SHORT)
+                        .show();
                 return;
             }
 
             if (TextUtils.isEmpty(studentId)) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(),
-                        "Введите номер студенческого билета",
-                        Toast.LENGTH_SHORT
-                ).show();
+                          "Введите номер студенческого билета",
+                               Toast.LENGTH_SHORT)
+                        .show();
                 return;
             }
 
             if (TextUtils.isEmpty(password)) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(),
-                        "Введите пароль",
-                        Toast.LENGTH_SHORT
-                ).show();
+                          "Введите пароль",
+                               Toast.LENGTH_SHORT)
+                        .show();
                 return;
             }
 
@@ -165,12 +169,13 @@ public class LoginFragment extends FragmentUtils {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
                 StudentResponse studentResponse = response.body();
+
                 if (studentResponse != null) {
                     String token = studentResponse.getToken();
                     AuthManager.saveToken(getContext(), token);
                     Toast.makeText(getContext(),
-                            "Успешный вход",
-                            Toast.LENGTH_SHORT)
+                              "Успешный вход",
+                                    Toast.LENGTH_SHORT)
                             .show();
                     goToProfileFragment();
                 }

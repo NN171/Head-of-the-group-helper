@@ -16,28 +16,35 @@ import com.immortalidiot.studentapp.ui.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity implements CallbackFragment {
     ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         replaceFragment(new LoginFragment(), false);
 
         ViewGroup.LayoutParams layoutParams = binding.navView.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+
         binding.navView.setLayoutParams(layoutParams);
         binding.bottomNavView.setVisibility(View.GONE);
         binding.bottomNavView.setOnItemSelectedListener(v -> {
+
             if (v.getItemId() == R.id.navigation_profile) {
                 replaceFragment(new ProfileFragment(), true);
             }
+
             if (v.getItemId() == R.id.navigation_settings) {
                 replaceFragment(new SettingsFragment(), true);
             }
+
             if (v.getItemId() == R.id.navigation_journal) {
                 replaceFragment(new JournalFragment(), true);
             }
+
             return true;
         });
     }
@@ -63,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements CallbackFragment 
     }
 
     @Override
-    public void setNavHostVisibility(int state) {
-        binding.bottomNavView.setVisibility(state);
-    }
+    public void setNavHostVisibility(int state) { binding.bottomNavView.setVisibility(state); }
 
 }

@@ -16,13 +16,11 @@ public class ProfileFragment extends FragmentUtils {
     CallbackFragment fragment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savesInstanceState) {
-
+                             ViewGroup container,
+                             Bundle savesInstanceState) {
         ((MainActivity)getActivity()).setNavHostVisibility(View.VISIBLE);
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
-    public void setCallbackFragment(CallbackFragment fragment) {
-        this.fragment = fragment;
-    }
+    public void setCallbackFragment(CallbackFragment fragment) { this.fragment = fragment; }
 }

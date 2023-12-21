@@ -1,6 +1,7 @@
 package com.immortalidiot.studentapp.auth;
 
-import android.annotation.SuppressLint;import android.content.Context;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 public class AuthManager {
@@ -24,7 +25,5 @@ public class AuthManager {
         getPreferences(context).edit().remove(SECRET_KEY).apply();
     }
 
-    public static boolean isLoggedIn(Context context) {
-        return getToken(context) != null;
-    }
+    public static boolean isLoggedIn(Context context) { return getToken(context) != null; }
 }
