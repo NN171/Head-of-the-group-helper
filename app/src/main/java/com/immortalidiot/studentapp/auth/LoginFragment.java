@@ -56,17 +56,17 @@ public class LoginFragment extends FragmentUtils {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
 
         View view = binding.getRoot();
-        AppCompatCheckBox checkBox = binding.rememberMeCheckBox;
+        AppCompatCheckBox checkBox = binding.loginRememberMeCheckbox;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> sharedPreferences
                 .edit()
                 .putBoolean("remember_me", isChecked).apply());
 
         forgotDialogBinding = ForgotDialogBinding.inflate(inflater, container, false);
-        progressBar = binding.progressBar;
+        progressBar = binding.loginProgressBar;
         final TextInputEditText studentIdInputField = binding.regStudentIdField;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
-        binding.toRegistration.setOnClickListener(v -> {
+        binding.loginToRegistrationTextview.setOnClickListener(v -> {
             if (fragment != null) {
                 fragment.changeFragment(new RegistrationFragment(), true);
             }
