@@ -32,22 +32,22 @@ public class RegistrationFragment extends FragmentUtils {
                              Bundle savedInstanceState) {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        ProgressBar progressBar = binding.progressBar;
-        final TextInputEditText studentIdInputField = binding.regStudentIdField;
+        ProgressBar progressBar = binding.registrationProgressBar;
+        final TextInputEditText studentIdInputField = binding.registrationStudentId;
         studentIdInputField.setTransformationMethod(new NumericKeyboardTransformation());
 
-        binding.toLogin.setOnClickListener(v -> {
+        binding.registrationToLoginTextview.setOnClickListener(v -> {
             if (fragment != null) {
                 closeFragment();
             }
         });
 
-        binding.regButton.setOnClickListener(v -> {
+        binding.registrationButton.setOnClickListener(v -> {
             progressBar.setVisibility(View.VISIBLE);
-            String email = String.valueOf(binding.regEmail.getText());
+            String email = String.valueOf(binding.registrationEmail.getText());
             String studentId = String.valueOf(studentIdInputField.getText());
-            String password = String.valueOf(binding.regPassword.getText());
-            String passwordConfirmation = String.valueOf(binding.passwordConfirmation.getText());
+            String password = String.valueOf(binding.registrationPassword.getText());
+            String passwordConfirmation = String.valueOf(binding.registrationPasswordConfirmation.getText());
 
             if (TextUtils.isEmpty(email)) {
                 progressBar.setVisibility(View.GONE);
